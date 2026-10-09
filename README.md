@@ -413,8 +413,7 @@ Reading lessons does not derive, reveal, import, or change wallet material.
 **Open this tool** explicitly leaves the guide and uses normal tool
 navigation, which can change displayed results and runs Vanity's usual
 benchmark on entry. The guide explains limitations; it does not certify a
-wallet, transaction, or computer safe. Hidden Lightning and Journal features
-have availability notes and cannot be opened through the guide.
+wallet, transaction, or computer safe.
 
 ### iPhone home-screen app
 

@@ -19,18 +19,14 @@ material. Its security posture rests on the following model:
 
 - The tool is self-contained and designed for offline, air-gapped use. It does
   not intentionally transmit sensitive data to any server.
-- Optional guide routes, diagrams, and ungraded checks use only bundled public
-  content and transient learning state; answers never reach wallet inputs.
-  Original dice/input records plus their recipe can rebuild a wallet and must
-  be protected like seed phrases. Download checksums establish byte integrity;
-  GitHub/Sigstore attestations establish build provenance, not device safety.
-- The optional feature guide renders only bundled, translated plain text. It
-  accepts known lesson IDs and keeps only lesson progress in page memory;
-  it reads no wallet inputs, saves nothing in browser storage, and makes no
+- The optional feature guide renders only bundled, translated plain text for
+  known lesson IDs. Its routes, diagrams, and ungraded checks keep only
+  learning progress in page memory; answers never reach wallet inputs. It
+  reads no wallet inputs, saves nothing in browser storage, and makes no
   network calls. Pagehide (including End Session) clears progress and closes
   it; a back/forward-cache restore starts fresh. Only an explicit Open this
-  tool action invokes normal released-tool navigation. A completed lesson
-  is not a security verdict or an endorsement of the user's environment.
+  tool action navigates to a released tool. A completed lesson is not a
+  security verdict.
 - The Security log below Important records initial browser-reported
   connectivity, connectivity changes, and detected browser translation.
   Its API accepts only fixed event codes, never arbitrary messages, errors,
@@ -53,7 +49,9 @@ material. Its security posture rests on the following model:
 - The downloaded `entropylab.html` remains the recommended path for sensitive
   use. It is one self-contained file, does not register the hosted service
   worker from `file://` or another host, and should be verified before transfer
-  to a dedicated computer that is disconnected from every network.
+  to a dedicated computer that is disconnected from every network. Download
+  checksums establish byte integrity; GitHub/Sigstore attestations establish
+  build provenance, not device safety.
 - EntropyLab's own secp256k1 curve operations (public-key derivation, ECDSA
   signing and verification in PSBT inspection, curve point math) and its
   cryptographic hashes (SHA-256/SHA-512/RIPEMD-160/HMAC/PBKDF2) run on
@@ -254,7 +252,8 @@ material. Its security posture rests on the following model:
   methods recommend 100 rolls for a 24-word seed; 99 rolls still trigger the
   below-recommendation warning. Users who intend to
   secure funds must meet the displayed roll/card recommendation and verify
-  their procedure independently.
+  their procedure independently. Original dice/input records plus their
+  recipe can rebuild a wallet and must be protected like seed phrases.
 - Brain wallet — lab hashes the exact UTF-8 text with unsalted SHA-256 and
   treats the digest as BIP39 entropy. Guessable text is stolen coins. A valid
   24-word mnemonic from that hash is not the same wallet as hashing the text

@@ -109,6 +109,7 @@ test("lazy dialog, deep links, close/resume, repeated completion and explicit na
   assert.equal(guide.isOpen(), false);
   guide.open("journal", opener);
   assert.equal(doc.querySelector('[data-guide-action="open-tool"]'), null);
+  assert.equal(doc.getElementById("guide-step"), null, "hidden tabs have no lesson until they ship");
   guide.open("missing", opener);
   assert.ok(doc.querySelector('[data-guide-lesson="basics"]'));
 }));
@@ -132,6 +133,7 @@ test("catalog covers released workspaces with complete steps, unique IDs, and ex
   const lessons = featureGuideLessons();
   assert.equal(lessons.find((item) => item.id === "basics").steps.length, 8);
   assert.deepEqual([...new Set(lessons.map((item) => item.tool).filter(Boolean))].sort(), ["bip85", "calc", "msig", "psbt", "sp", "vanity"]);
+  assert.ok(!lessons.some((item) => ["lightning", "journal"].includes(item.id)), "hidden tabs get lessons only when they ship");
   const sources = await collectSources(fileURLToPath(new URL("..", import.meta.url)));
   const strings = [];
   const stepIds = [];

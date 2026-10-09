@@ -137,8 +137,9 @@
       document.getElementById("guide-continue-route").click();
       equal(document.getElementById("guide-step").dataset.guideStep, "keys-methods");
       document.getElementById("guide-contents").click();
-      // Every catalog route finishes and can be read again, including availability notes.
+      // Every catalog lesson finishes and can be read again; hidden tabs have no lesson.
       const ids = [...document.querySelectorAll('[data-guide-action="choose"]')].map((node) => node.dataset.guideLesson);
+      assert(!ids.includes("journal") && !ids.includes("lightning"), "hidden tab has a lesson");
       for (const id of ids) {
         document.getElementById(`guide-lesson-${id}`).click();
         let count = 0;
@@ -147,7 +148,6 @@
           document.getElementById("guide-next").click();
         }
         equal(document.getElementById("guide-content").dataset.guideComplete, id);
-        if (id === "journal" || id === "lightning") assert(!document.getElementById("guide-open-tool"), "hidden tool has navigation");
         document.getElementById("guide-restart").click();
         assert(document.getElementById("guide-back").disabled, "replay did not start at first step");
         document.getElementById("guide-contents").click();
